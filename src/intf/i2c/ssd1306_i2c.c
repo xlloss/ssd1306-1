@@ -32,9 +32,6 @@ void ssd1306_i2cInitEx(int8_t scl, int8_t sda, int8_t sa)
     cfg.scl = scl;
     cfg.sda = sda;
     ssd1306_platform_i2cInit(-1, sa, &cfg);
-#elif defined(CONFIG_TWI_I2C_AVAILABLE) && defined(CONFIG_TWI_I2C_ENABLE)
-    ssd1306_i2cConfigure_Twi(0);
-    ssd1306_i2cInit_Twi(sa);
 #elif defined(CONFIG_SOFTWARE_I2C_AVAILABLE) && defined(CONFIG_SOFTWARE_I2C_ENABLE)
     ssd1306_i2cInit_Embedded(scl, sda, sa);
 #else

@@ -31,7 +31,6 @@
 
 #include "ssd1306_i2c_conf.h"
 #include "ssd1306_i2c_embedded.h"
-#include "ssd1306_i2c_twi.h"
 
 #ifdef __cplusplus
 extern "C" {

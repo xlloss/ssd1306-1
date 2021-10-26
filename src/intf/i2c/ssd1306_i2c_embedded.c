@@ -42,22 +42,6 @@ static uint8_t s_scl = (1<<SSD1306_SCL);
 static uint8_t s_sda = (1<<SSD1306_SDA);
 static uint8_t s_sa  = SSD1306_SA;
 
-#if defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
-    // at 8Mhz each command takes ~ 0.125us
-    #define DDR_REG      DDRB
-    #define PORT_REG     PORTB
-#elif defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
-    // For AttinyX4 controllers
-    // at 8Mhz each command takes ~ 0.125us
-    #define DDR_REG      DDRA
-    #define PORT_REG     PORTA
-#else // For Atmega
-    // at 16Mhz each command takes ~ 0.0625us
-    #define DDR_REG      DDRC
-    #define PORT_REG     PORTC
-#endif
-
-
 #ifndef F_CPU
     #warning "F_CPU is not defined, there can be I2C issues"
     #define F_CPU 8000000

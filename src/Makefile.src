@@ -28,19 +28,13 @@ SRCS_C = \
 	ssd1306_8bit.c \
 	ssd1306_16bit.c \
 	ssd1306_menu.c \
-	ssd1306_hal/avr/platform.c \
 	ssd1306_hal/linux/platform.c \
 	ssd1306_hal/mingw/platform.c \
-	ssd1306_hal/stm32/platform.c \
 	ssd1306_hal/template/platform.c \
 	intf/i2c/ssd1306_i2c.c \
 	intf/i2c/ssd1306_i2c_embedded.c \
-	intf/i2c/ssd1306_i2c_twi.c \
 	intf/spi/ssd1306_spi.c \
-	intf/spi/ssd1306_spi_avr.c \
-	intf/spi/ssd1306_spi_usi.c \
 	intf/ssd1306_interface.c \
-	intf/uart/ssd1306_uart_builtin.c \
 	lcd/lcd_common.c \
 	lcd/lcd_pcd8544.c \
 	lcd/lcd_il9163.c \
@@ -56,7 +50,6 @@ SRCS_C = \
 	intf/vga/vga.c \
 	intf/vga/atmega328p/vga128x64.c \
 	intf/vga/atmega328p/vga96x40.c \
-	ssd1306_uart.c \
 
 SRCS_CPP = \
 	nano_engine/canvas.cpp \
@@ -64,7 +57,6 @@ SRCS_CPP = \
 	nano_gfx.cpp \
 	sprite_pool.cpp \
 	ssd1306_console.cpp \
-	ssd1306_hal/arduino/platform.cpp \
 	intf/vga/esp32/vga128x64.cpp \
 	intf/vga/esp32/CompositeOutput.cpp \
 

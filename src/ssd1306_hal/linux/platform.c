@@ -476,6 +476,10 @@ static void empty_function_args_spi(const uint8_t *buffer, uint16_t bytes)
 {
 }
 
+static void empty_function_spi_close()
+{
+}
+
 void ssd1306_platform_spiInit(int8_t busId,
                               int8_t ces,
                               int8_t dcPin)
@@ -496,7 +500,7 @@ void ssd1306_platform_spiInit(int8_t busId,
     ssd1306_intf.stop = empty_function_spi;
     ssd1306_intf.send = empty_function_arg_spi;
     ssd1306_intf.send_buffer = empty_function_args_spi;
-    ssd1306_intf.close = empty_function;
+    ssd1306_intf.close = empty_function_spi_close;
 
     snprintf(filename, 19, "/dev/spidev%d.%d", busId, ces);
     if ((s_spi_fd = open(filename, O_RDWR)) < 0)

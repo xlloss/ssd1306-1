@@ -49,22 +49,18 @@
  * and want to reduce memory consumption.                               */
 
 /** Define this macro if you need to enable software I2C module for compilation */
-#define CONFIG_SOFTWARE_I2C_ENABLE
+//#define CONFIG_SOFTWARE_I2C_ENABLE
 
 /** Define this macro if you need to enable TWI I2C module for compilation */
-#define CONFIG_TWI_I2C_ENABLE
+//#define CONFIG_TWI_I2C_ENABLE
 
-/** Define this macro if you need to enable AVR SPI module for compilation */
-#define CONFIG_AVR_SPI_ENABLE
 
 /** Define this macro if you need to enable USI SPI module for compilation */
-#define CONFIG_USI_SPI_ENABLE
+//#define CONFIG_USI_SPI_ENABLE
 
-/** Define this macro if you need to enable AVR UART module for compilation */
-#define CONFIG_AVR_UART_ENABLE
 
 /** Define this macro if you need to enable VGA module for compilation */
-#define CONFIG_VGA_ENABLE
+//#define CONFIG_VGA_ENABLE
 
 /** Define this macro if you need to enable Adafruit GFX canvas support for compilation */
 #ifndef CONFIG_ADAFRUIT_GFX_ENABLE
