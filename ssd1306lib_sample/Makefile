@@ -32,8 +32,10 @@ CCFLAGS += -MD -g -Os -w -ffreestanding $(INCLUDES) -Wall -Werror \
 INCLUDES += -I./$(INC)
 OUTFILE=ssd1306.out
 
-SRCS += main.cpp
-OBJS = main.o
+SRCS += sova.cpp main.cpp
+MAIN_OBJS = main.o
+SOVA_OBJS = sova.o
+OBJS = ${SOVA_OBJS} ${MAIN_OBJS}
 LDFLAGS += -L$(LIB_FOLDER) -lssd1306
 
 all: ssd1306
@@ -41,7 +43,10 @@ all: ssd1306
 ssd1306: $(OBJS)
 	$(CC) -o $(OUTFILE) $(CCFLAGS) $(OBJS) $(LDFLAGS)
 
-$(OBJS): main.cpp
+$(MAIN_OBJS): main.cpp
+	$(CXX) -std=c++11 $(CCFLAGS) $(CXXFLAGS) $(CCFLAGS-$(basename $(notdir $@))) -c $< -o $@
+
+$(SOVA_OBJS): sova.cpp
 	$(CXX) -std=c++11 $(CCFLAGS) $(CXXFLAGS) $(CCFLAGS-$(basename $(notdir $@))) -c $< -o $@
 
 clean:
