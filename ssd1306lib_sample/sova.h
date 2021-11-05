@@ -29,6 +29,5 @@
 #include "ssd1306_hal/io.h"
 #include <stdint.h>
 
-extern const uint8_t Sova [] PROGMEM;
-
+extern const uint8_t image_data_penguin [] PROGMEM;
 #endif
