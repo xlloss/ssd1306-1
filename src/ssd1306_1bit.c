@@ -836,32 +836,47 @@ void ssd1306_drawBitmap1_4(uint8_t x, uint8_t y, uint8_t w, uint8_t h, const uin
 
 void ssd1306_drawXBitmap(uint8_t x, uint8_t y, uint8_t w, uint8_t h, const uint8_t *buf)
 {
-    uint8_t i, j;
+    int i, j, buf_index;
+    int bit = 7;
+    uint8_t data = 0;
+    const uint8_t *out_buf;
+    int s;
+
+    buf_index = 0;
     lcduint_t pitch = (w + 7) >> 3;
     ssd1306_lcd.set_block(x, y, w);
-    for(j=(h >> 3); j>0; j--)
+
+    for(j = 0; j < (h >> 3); j++)
     {
-        uint8_t bit = 0;
-        for(i=w;i>0;i--)
+        bit = 7;
+        buf_index = 0;
+        out_buf = &buf[(j * pitch * 8)];
+
+        for(i = 0; i < w; i++)
         {
-            uint8_t data = 0;
-            for (uint8_t k = 0; k<8; k++)
+            data = 0;
+            for (uint8_t k = 0; k < 8; k++)
             {
-                data |= ( ((pgm_read_byte(&buf[k*pitch]) >> bit) & 0x01) << k );
+
+                data |= (((pgm_read_byte(&out_buf[k * pitch]) >> bit) & 0x01) << k);
             }
+
             ssd1306_lcd.send_pixels1(s_ssd1306_invertByte^data);
-            bit++;
-            if (bit >= 8)
+            bit--;
+            if (bit < 0)
             {
-                buf++;
-                bit=0;
+                buf_index = buf_index + 1;
+                out_buf = &buf[(j * pitch * 8) + buf_index];
+                bit = 7;
             }
         }
+
         if (bit)
         {
-            buf++;
+            buf_index++;
+            out_buf = &buf[(j * pitch * 8) + buf_index];
         }
-        buf += pitch * 7;
+
         ssd1306_lcd.next_page();
     }
     ssd1306_intf.stop();
